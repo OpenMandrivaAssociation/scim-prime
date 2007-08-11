@@ -1,5 +1,5 @@
 %define version	1.0.0
-%define release	%mkrel 1
+%define release	%mkrel 2
 
 %define scim_version	1.4.0
 %define prime_version	1.0.0.1
@@ -20,8 +20,8 @@ Requires:		%{libname} = %{version}
 Requires:		prime >= %{prime_version}
 Requires:		scim >= %{scim_version}
 BuildRequires:		libprime >= %{prime_version}
-BuildRequires:		scim-devel >= %{scim_version}
-BuildRequires:		automake1.8, libltdl-devel
+BuildRequires:		scim-devel >= 1.4.7-3mdk
+BuildRequires:		automake, libltdl-devel
 
 %description
 Scim-prime is an SCIM IMEngine module for prime.
@@ -31,7 +31,6 @@ It supports Japanese input.
 %package -n	%{libname}
 Summary:	Scim-prime library
 Group:		System/Internationalization
-Provides:		%{libname_orig} = %{version}-%{release}
 
 %description -n %{libname}
 scim-prime library.
@@ -39,7 +38,7 @@ scim-prime library.
 
 %prep
 %setup -q
-cp /usr/share/automake-1.9/mkinstalldirs .
+cp /usr/share/automake-1.0/mkinstalldirs .
 
 %build
 [[ ! -x configure ]] && ./bootstrap
@@ -60,7 +59,7 @@ rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
 
 # remove unneeded files
-rm -f %{buildroot}/%{_libdir}/scim-1.0/*/*.{a,la}
+rm -f %{buildroot}/%{scim_plugins_dir}/*/*.{a,la}
 
 %find_lang %{name}
 
@@ -79,7 +78,5 @@ rm -rf $RPM_BUILD_ROOT
 %files -n %{libname}
 %defattr(-,root,root)
 %doc COPYING
-%{_libdir}/scim-1.0/IMEngine/*.so
-%{_libdir}/scim-1.0/SetupUI/*.so
-
-
+%{scim_plugins_dir}/IMEngine/*.so
+%{scim_plugins_dir}/SetupUI/*.so
