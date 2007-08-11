@@ -20,7 +20,7 @@ Requires:		%{libname} = %{version}
 Requires:		prime >= %{prime_version}
 Requires:		scim >= %{scim_version}
 BuildRequires:		libprime >= %{prime_version}
-BuildRequires:		scim-devel >= 1.4.7-3mdk
+BuildRequires:		scim-devel >= 1.4.7-4mdk
 BuildRequires:		automake, libltdl-devel
 
 %description
@@ -38,7 +38,6 @@ scim-prime library.
 
 %prep
 %setup -q
-cp /usr/share/automake-1.0/mkinstalldirs .
 
 %build
 [[ ! -x configure ]] && ./bootstrap
