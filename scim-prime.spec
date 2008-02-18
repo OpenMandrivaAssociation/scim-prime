@@ -8,7 +8,7 @@
 %define libname %mklibname %{name} 0
 
 Name:		scim-prime
-Summary:	Scim-prime is an SCIM IMEngine module for prime
+Summary:	SCIM IMEngine module for prime
 Version:	%{version}
 Release:	%{release}
 Group:		System/Internationalization
