@@ -1,5 +1,5 @@
-%define version	1.0.0
-%define release	%mkrel 3
+%define version	1.0.1
+%define release	%mkrel 1
 
 %define scim_version	1.4.0
 %define prime_version	1.0.0.1
@@ -12,13 +12,13 @@ Summary:	SCIM IMEngine module for prime
 Version:	%{version}
 Release:	%{release}
 Group:		System/Internationalization
-License:	GPL
+License:	GPLv2+
 URL:		http://sourceforge.jp/projects/scim-imengine/
-Source0:	%{name}-%{version}.tar.bz2
+Source0:	%{name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
-Requires:		%{libname} = %{version}
+Obsoletes:		%{libname}
 Requires:		prime >= %{prime_version}
-Requires:		scim >= %{scim_version}
+Requires:		scim = %{scim_api}
 BuildRequires:		libprime >= %{prime_version}
 BuildRequires:		scim-devel >= 1.4.7-4mdk
 BuildRequires:		automake, libltdl-devel
@@ -26,15 +26,6 @@ BuildRequires:		automake, libltdl-devel
 %description
 Scim-prime is an SCIM IMEngine module for prime.
 It supports Japanese input.
-
-
-%package -n	%{libname}
-Summary:	Scim-prime library
-Group:		System/Internationalization
-
-%description -n %{libname}
-scim-prime library.
-
 
 %prep
 %setup -q
@@ -65,17 +56,13 @@ rm -f %{buildroot}/%{scim_plugins_dir}/*/*.{a,la}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post -n %{libname} -p /sbin/ldconfig
-%postun -n %{libname} -p /sbin/ldconfig
+%post -p /sbin/ldconfig
+%postun  -p /sbin/ldconfig
 
 
 %files -f %{name}.lang
 %defattr(-,root,root)
 %doc AUTHORS COPYING ChangeLog README
 %{_datadir}/scim/icons/*
-
-%files -n %{libname}
-%defattr(-,root,root)
-%doc COPYING
 %{scim_plugins_dir}/IMEngine/*.so
 %{scim_plugins_dir}/SetupUI/*.so
