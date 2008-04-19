@@ -1,5 +1,5 @@
 %define version	1.0.1
-%define release	%mkrel 1
+%define release	%mkrel 2
 
 %define scim_version	1.4.0
 %define prime_version	1.0.0.1
@@ -18,7 +18,7 @@ Source0:	%{name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes:		%{libname}
 Requires:		prime >= %{prime_version}
-Requires:		scim = %{scim_api}
+Requires:		scim-client = %{scim_api}
 BuildRequires:		libprime >= %{prime_version}
 BuildRequires:		scim-devel >= 1.4.7-4mdk
 BuildRequires:		automake, libltdl-devel
