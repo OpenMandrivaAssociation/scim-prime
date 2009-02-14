@@ -1,11 +1,8 @@
 %define version	1.0.1
-%define release	%mkrel 3
+%define release	%mkrel 4
 
 %define scim_version	1.4.0
 %define prime_version	1.0.0.1
-
-%define libname_orig lib%{name}
-%define libname %mklibname %{name} 0
 
 Name:		scim-prime
 Summary:	SCIM IMEngine module for prime
@@ -14,12 +11,13 @@ Release:	%{release}
 Group:		System/Internationalization
 License:	GPLv2+
 URL:		http://sourceforge.jp/projects/scim-imengine/
-Source0:	%{name}-%{version}.tar.gz
+Source0:	http://sourceforge.jp/projects/scim-imengine/downloads/29156/%{name}-%{version}.tar.gz
+Patch0:		scim-prime-1.0.1-linkage.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
-Obsoletes:		%{libname}
+Obsoletes:		%{_lib}scim-prime0
 Requires:		prime >= %{prime_version}
 Requires:		scim-client = %{scim_api}
-BuildRequires:		libprime >= %{prime_version}
+BuildRequires:		prime-devel >= %{prime_version}
 BuildRequires:		scim-devel >= 1.4.7-4mdk
 BuildRequires:		automake, libltdl-devel
 
@@ -31,16 +29,7 @@ It supports Japanese input.
 %setup -q
 
 %build
-[[ ! -x configure ]] && ./bootstrap
-
-# temporary hack to fix ltmain.sh version
-set -x
-aclocal -I m4
-autoheader
-libtoolize -c --automake 
-automake --add-missing --copy --include-deps
-autoconf
-
+autoreconf -fi
 %configure2_5x
 %make
 
