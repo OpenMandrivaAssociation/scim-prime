@@ -10,7 +10,7 @@ Version:	%{version}
 Release:	%{release}
 Group:		System/Internationalization
 License:	GPLv2+
-URL:		http://sourceforge.jp/projects/scim-imengine/
+URL:		https://sourceforge.jp/projects/scim-imengine/
 Source0:	http://sourceforge.jp/projects/scim-imengine/downloads/29156/%{name}-%{version}.tar.gz
 Patch0:		scim-prime-1.0.1-linkage.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
