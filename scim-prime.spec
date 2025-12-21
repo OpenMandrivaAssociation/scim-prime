@@ -17,6 +17,9 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes:		%{_lib}scim-prime0
 Requires:		prime >= %{prime_version}
 Requires:		scim-client = %{scim_api}
+BuildRequires:	autoconf
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
 BuildRequires:		prime-devel >= %{prime_version}
 BuildRequires:		scim-devel >= 1.4.7-4mdk
 BuildRequires:		automake, libltdl-devel
